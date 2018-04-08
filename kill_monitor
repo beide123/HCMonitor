@@ -1,0 +1,31 @@
+#!/bin/bash
+pname=$1
+puser=$2
+
+if [[ -z $pname ]]; then
+echo "Fatal error, you MUST assign a process name"
+exit 1
+fi
+
+if [[ "$1" == "-h" ||  "$1" == "--help" ]]; then
+echo "Func: This shell script will find the process you want to kill with signal 9, process name support regular expression with 'grep'\n"
+echo "Usage: $0 processname\n"
+echo "Example: $0 run, this will kill all process which match 'run'\n"
+exit 0
+fi
+
+if [[ -z $puser ]]; then
+puser=root
+fi
+
+pid=`ps aux | grep $pname | grep $puser | grep -v grep | awk '{print $2}'`
+
+if [[ -z $pid ]]; then
+        echo ":(, I can NOT find $pname running by $puser"
+fi
+
+# There maybe exist bugs refer to $pid have more than one pid, such as 2 or more
+# So there is a TODO to fix it,
+# But kill utility support kill pids which more than one, :)
+
+kill -9 $pid >/dev/null 2>&1

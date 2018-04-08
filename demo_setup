@@ -1,0 +1,2 @@
+#!/bin/bash
+./build/l2fwd -c fff -n3 -- -p3
