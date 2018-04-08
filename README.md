@@ -8,18 +8,18 @@
 # Usage
 - Install DPDK and bind the NICs.
 
-#Download DPDK source code from http://http://dpdk.org/download
+ Download DPDK source code from http://http://dpdk.org/download
 - Compile the HCMonitor code
 
-#cd $(MONITOR_PATH)
+ #cd $(MONITOR_PATH)
 
-#make
+ #make
 - Start the programe and see latency CDF in cdf.txt
 
-#sh demo_setup.sh 
+ #sh demo_setup.sh 
 
-#tail -f cdf.txt
+ #tail -f cdf.txt
 - Kill the programe
 
-#sh kill_monitor monitor 
+ #sh kill_monitor monitor 
 
