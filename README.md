@@ -70,7 +70,7 @@ The executable application monitor will be generated under build/
 
 configure the switch port (H) connected to HCMonitor to mirror the inbound and outbound traffic from port S1 to Sn, which represents the ports connected to servers.
 
-![HCMonitor_Test_Method](images/HCMonitor_test.png)
+![HCMonitor_Test_Method](HCMonitor_test.png)
 
 Configure the file setting.cfg according to own needs, for example:
 ```bash
