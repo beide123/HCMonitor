@@ -1,28 +1,43 @@
-How to Start HCMonitor
-====================
-Requirements
---------------------
-* Kernel version >= 2.6.34, glibc>=2.7
-* More than 32G system memory depending on the application
-* DPDK version >=2.2.0
-* A Intel network card.
+/*HCMonitor is a high performance monitor system developed on user-level */ 
+1. Prerequisites
+    We require the following libraries to run HCMonitor.
+  libdpdk (Intel's DPDK package, DPDK-19.08 best) 
+  libnuma
+  libconfig
+  mysql
+  mysqlclient
+  python2.7
+2. Requires headers.
+  mysql-devel
+  python-devel
+3. Included directories
+   HCMonitor: source code directory
+4. Install guides
+HCMonitor can be installed as below.
 
-Usage
---------------------
-- Install DPDK and bind the NICs.
+DPDK INSTALL
+Download DPDK(Best for DPDK-19.08).
+Setup DPDK.
 
->Download DPDK source code from http://http://dpdk.org/download
-- Compile the HCMonitor code
+cd <path to DPDK>/usertools 
+./dpdk-setup.sh
+Press [39] x86_64-native-linux-gcc
 
->#cd $(MONITOR_PATH)
+Press [43] Insert IGB UIO module
 
->#make
-- Start the programe and see latency CDF in cdf.txt
+Press [47] Setup hugepage mappings for NUMA systems 
+(set 2560 for each node 2MB hugepages )
 
->#sh demo_setup.sh 
+Press [49] Bind Ethernet/Baseband/Crypto device to IGB UIO module 
 
->#tail -f cdf.txt
-- Kill the programe
+Press [60] Exit Script
 
->#sh kill_monitor monitor 
-
+Only those devices will work with DPDK drivers that are listed on this page: http://dpdk.org/doc/nics. Please make sure that your NIC is compatible before moving on to the next step.
+Setup HCMonitor library:
+cd <path to HCMonitor> 
+vim Makefile
+Add two configurations at the beginning as below
+RTE_SDK=`echo $PWD`/dpdk
+RTE_TARGET=x86_64-native-linuxapp-gcc
+make
+User guides

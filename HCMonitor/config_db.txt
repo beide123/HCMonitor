@@ -1,0 +1,2 @@
+#Mysql IP   User Passwd Database  Port
+#172.16.25.1 root root   hy        3306
