@@ -20,12 +20,12 @@ The measurement is transparent for network services by switch mirroring traffic,
  ![HCMonitor_architecture](images/HCMonitor_architecture.png)
 
 ### Prerequisites
-* libdpdk (Intel's DPDK package*, DPDK-19.08 best) 
-* libnuma
-* libconfig
-* mysql
-* mysqlclient
-* python2.7      
+* libdpdk (Intel's DPDK package*, DPDK-19.08 best) 
+* libnuma
+* libconfig
+* mysql
+* mysqlclient
+* python2.7      
 
 ### Included directories
 
@@ -33,11 +33,6 @@ The measurement is transparent for network services by switch mirroring traffic,
 ./    
 |__HCMonitor/	HCMonitor src files              
 ```
-
-**Introduction to apps**
-
-+ mcc_client: an app used for simulating massive concurrent tcp connections in IoT scenerio.
-+ http_loader: an HTTP benchmarking tool like wrk.
 
 ### Installation
 
@@ -48,7 +43,7 @@ $ wget https://fast.dpdk.org/rel/dpdk-19.08.2.tar.xz
 $ tar -xvf dpdk-19.08.2.tar.xz 
 $ cd dpdk-19.08.2/usertools/
 $ ./dpdk-setup.sh
-  	 - Press [39] x86_64-native-linux-gcc to compile the package
+     - Press [39] x86_64-native-linux-gcc to compile the package
      - Press [43] Insert IGB UIO module to install the driver
      - Press [47] Setup hugepage mappings for NUMA systems to setup hugepages
      - Press [49] Bind Ethernet/Baseband/Crypto device to IGB UIO module
