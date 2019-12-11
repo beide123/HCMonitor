@@ -59,11 +59,12 @@ Only those devices will work with DPDK drivers that are listed on this page: htt
 ```bash
 $ cd <path to HCMonitor>
 $ vim Makefile
-Add two configurations at the beginning as below
-	RTE_SDK= <path to dpdk>
-	RTE_TARGET=x86_64-native-linuxapp-gcc
+  # Add two configurations at the beginning as below
+  RTE_SDK= <path to dpdk>
+  RTE_TARGET=x86_64-native-linuxapp-gcc
+$ make
 ```
-There is a build_type option in build.sh to designate build type of the project. And the built executable file is put in directory $PWD/build/$build_type/
+The executable application monitor will be generated under build/
 
 #### Run
 
