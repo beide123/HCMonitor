@@ -17,7 +17,7 @@ The measurement is transparent for network services by switch mirroring traffic,
 
 ### Architecture
  
- ![HCMonitor_architecture](images/HCMonitor_architecture.png)
+ ![HCMonitor_architecture](HCMonitor_architecture.png)
 
 ### Prerequisites
 * libdpdk (Intel's DPDK package*, DPDK-19.08 best) 
