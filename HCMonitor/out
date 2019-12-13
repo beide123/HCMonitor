@@ -1,0 +1,543 @@
+EAL: Probing VFIO support...
+EAL: PCI device 0000:03:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL: PCI device 0000:03:00.1 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+Notice: odd number of ports in portmask.
+Lcore 0: RX port 0
+Lcore 0: RX port 0
+Initializing port 0... done: 
+Port 0, MAC address: 90:E2:BA:16:21:E5
+
+ring <Output_ring_0>@0x1035ffe80
+  flags=2
+  size=16777216
+  capacity=16777215
+  ct=0
+  ch=0
+  pt=0
+  ph=0
+  used=0
+  avail=16777215
+Enable HTTP: 0
+Success creat request hash on socket 0
+
+Checking link statusdone
+Port 0 Link Up - speed 10000 Mbps - full-duplex
+cpu hz: 2394000000
+L2FWD: entering main loop on lcore 1
+L2FWD:  -- lcoreid=1 portid=0
+cpu hz: 2394000000
+cpu hz: 2394000000
+L2FWD: entering timer loop on lcore 3
+cpu hz: 2394000000
+cpu hz: 2394000000
+L2FWD: entering log loop on lcore 5
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    0
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       0
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              0
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+cpu hz: 2394000000
+L2FWD: 
+lcore 6 has nothing to do
+cpu hz: 2394000000
+L2FWD: 
+lcore 7 has nothing to do
+cpu hz: 2394000000
+L2FWD: 
+lcore 8 has nothing to do
+cpu hz: 2394000000
+L2FWD: 
+lcore 9 has nothing to do
+cpu hz: 2394000000
+L2FWD: 
+lcore 10 has nothing to do
+cpu hz: 2394000000
+L2FWD: 
+lcore 11 has nothing to do
+cpu hz: 2394000000
+L2FWD: entering main loop on lcore 0
+L2FWD:  -- lcoreid=0 portid=0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    1
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       1
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              1
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 1 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    2
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       2
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              2
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 2 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    2
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       2
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              2
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 2 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    2
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       2
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              2
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 2 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    3
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       3
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              3
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 3 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                    3
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                       3
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:              3
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 3 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 0 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                18004
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   18004
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          18004
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 9003 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 9001 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                18004
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   18004
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          18004
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 9003 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 9001 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                24005
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   24005
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          24005
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 12003 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 12002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30005
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30005
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30005
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15003 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30006
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30006
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30006
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15004 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30006
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30006
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30006
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15004 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30007
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30007
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30007
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15005 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30007
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30007
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30007
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15005 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30008
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30008
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30008
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15006 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30008
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30008
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30008
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15006 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30008
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30008
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30008
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15006 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30009
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets in Tx Buffer:                0
+Packets freed:                   30009
+Packets dropped:                     0
+Aggregate statistics ===============================
+Total packets sent:                  0
+Total packets received:          30009
+Total packets tcp:                   0
+Total packets freed:                 0
+Total packets dropped:               0
+====================================================
+queue 0 rx 15007 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+queue 1 rx 15002 pkts.
+
+occupy:0,deque:0,pkt_req:0,pkt_rep:0
+[2J[1;1H
+Port statistics ====================================
+Statistics for port 0 ------------------------------
+Packets sent:                        0
+Packets received:                30009
+Packets in_err:                      0
+Packets Mbuf_err:                    0
+-------- Statistics for monitor --------
+Packets tcp:                         0
+Packets i
