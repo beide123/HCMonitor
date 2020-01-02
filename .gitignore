@@ -1,4 +1,4 @@
-HCMonitor/build/
+HCMonitor/build/*
 HCMonitor/cdf.txt
 HCMonitor/err
 HCMonitor/tags
