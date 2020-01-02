@@ -647,9 +647,12 @@ int packet_process(struct rte_ipv4_hdr *ip_hdr, struct timespec ts_now, int lcor
     int la_key;
 	if(likely((PrQue[lcore_id]->occupy + 1) % max_size != PrQue[lcore_id]->deque)){
         QType *q = PrQue[lcore_id]->RxQue + PrQue[lcore_id]->occupy;
-        if(conf->enable_http)
-           la_key = http_parse(ip_hdr, q, ts_now);
-        else
+        if(conf->enable_http){
+           if(conf->enable_https){
+               la_key = https_parse(ip_hdr, q, ts_now);
+           }else
+               la_key = http_parse(ip_hdr, q, ts_now);
+        }else
     	    la_key = key_extract(ip_hdr, q, ts_now); 
 	    if(likely(la_key > 0))
     	{       

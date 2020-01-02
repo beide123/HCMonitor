@@ -16,5 +16,6 @@
 
 uint8_t http_parse(struct rte_ipv4_hdr *ip_hdr,struct node_data *data,struct timespec ts_now);
 
+uint8_t https_parse(struct rte_ipv4_hdr *ip_hdr,struct node_data *data,struct timespec ts_now);
 
 #endif

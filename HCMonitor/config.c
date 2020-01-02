@@ -12,6 +12,7 @@ struct mconfig* initConfig()
   conf->label_offset   = 6;
   conf->pri_offset     = 5;
   conf->pri_high_label = 1;
+  conf->server_port    = 80;
   return conf;
 }
 
@@ -31,6 +32,7 @@ int getConfig(struct mconfig *conf)
     }
 
     config_lookup_int(&cfg, "enableHTTP", &(conf->enable_http));
+    config_lookup_int(&cfg, "enableHTTPS", &(conf->enable_https));
     config_lookup_int(&cfg, "enableHY", &(conf->enable_hy));
     config_lookup_int(&cfg, "enablePri", &(conf->enable_pri));
     config_lookup_int(&cfg, "enablePython", &(conf->enable_python));
@@ -49,6 +51,7 @@ int getConfig(struct mconfig *conf)
     config_lookup_int(&cfg, "PriOffset", &(conf->pri_offset));
     config_lookup_int(&cfg, "PriLabelHigh", &(conf->pri_high_label));
     config_lookup_int(&cfg, "PriLabelLow", &(conf->pri_low_label));
+    config_lookup_int(&cfg, "server_port", &(conf->server_port));
 
     printf("Enable HTTP: %d\n", conf->enable_http);
     config_destroy(&cfg);
