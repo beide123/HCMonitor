@@ -230,38 +230,43 @@ float avg(float a[],unsigned int n)
 
 void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 {	
-	float w[20],w_high[20],w_low[20];
-	unsigned int index, index_high,index_low,i = 0,num_low = 0,num_high = 0;
-
-    if(idx_pri_high > ph_size){
-        ack_pri_high = (float*)realloc(ack_pri_high, sizeof(float) * (idx_pri_high + 1));
-        ph_size = idx_pri_high + 1;
-    }
-
-    if(idx_pri_low > pl_size){
-        ack_pri_low = (float*)realloc(ack_pri_low, sizeof(float) * (idx_pri_low + 1));
-        pl_size = idx_pri_low + 1;
-    }
+	float w[20];
+	unsigned int index, i = 0;
 	
-	for(i = 0; i < idx; i++){
-    	if(ack_time_pro->pri[i]){
-        	ack_pri_high[num_high++] = ack_time_pro->time[i];
-		}else{
-            ack_pri_low[num_low++] = ack_time_pro->time[i];
+	float w_high[20],w_low[20];
+	unsigned int index_high,index_low,num_low = 0,num_high = 0;
+
+    if(!conf->enable_http){
+
+    	if(idx_pri_high > ph_size){
+        	ack_pri_high = (float*)realloc(ack_pri_high, sizeof(float) * (idx_pri_high + 1));
+        	ph_size = idx_pri_high + 1;
+    	}
+
+    	if(idx_pri_low > pl_size){
+        	ack_pri_low = (float*)realloc(ack_pri_low, sizeof(float) * (idx_pri_low + 1));
+        	pl_size = idx_pri_low + 1;
+    	}
+	
+		for(i = 0; i < idx; i++){
+    		if(ack_time_pro->pri[i]){
+        		ack_pri_high[num_high++] = ack_time_pro->time[i];
+			}else{
+            	ack_pri_low[num_low++] = ack_time_pro->time[i];
+			}
+    	}
+
+		if(num_high){
+			qsort(ack_pri_high,num_high,sizeof(float), compInc);
+			avg_delay_high = avg(ack_pri_high,num_high);
 		}
-    }
-
-	if(num_high){
-		qsort(ack_pri_high,num_high,sizeof(float), compInc);
-		avg_delay_high = avg(ack_pri_high,num_high);
-	}
-	if(num_low){
+		if(num_low){
     		qsort(ack_pri_low,num_low,sizeof(float), compInc);
-		avg_delay_low = avg(ack_pri_low,num_low);
-	}
-
+			avg_delay_low = avg(ack_pri_low,num_low);
+		}
+   	}
 	avg_delay = avg(ack_time_pro->time, idx);
-    	qsort(ack_time_pro->time, idx, sizeof(float), compInc);
+    qsort(ack_time_pro->time, idx, sizeof(float), compInc);
 
 #ifdef OP_MYSQL
 	//open the AUTOCOMMIT
@@ -281,25 +286,31 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	
 	fprintf(fp, "connections:%d,retrans:%d,avg_delay:%f\n",
 			conn_active_mid,recount,avg_delay);
-	fprintf(fp, "recv_pri_high:%d, recv_pri_low:%d.\n"
+    if(!conf->enable_http){
+		fprintf(fp, "recv_pri_high:%d, recv_pri_low:%d.\n"
                 "pri_high_num:%d,low_pri_num:%d\n",
-            idx_pri_high, idx_pri_low, num_high,num_low);
-	fprintf(fp, "CDF: %9s: %18s: %26s:\n","total","high_pri","low_pri");
-	
+            	idx_pri_high, idx_pri_low, num_high,num_low);
+		fprintf(fp, "CDF: %9s: %18s: %26s:\n","total","high_pri","low_pri");
+	}else{
+		fprintf(fp, "CDF: %9s:\n","total");
+	}
 	recount = 0;
+	
+	if(!conf->enable_http){
 
-	if(num_high && num_low){
-    	fprintf(fp, "%d: %12.4f; %16.4f; %26.4f\n", 
-			0, ack_time_pro->time[0], ack_pri_high[0], ack_pri_low[0]);
-	}else if(num_high)
-		fprintf(fp, "%d: %12.4f; %20.4f\n",
-			0, ack_time_pro->time[0], ack_pri_high[0]);
-	 else if(num_low)
-		fprintf(fp, "%d: %12.4f; %28.4f\n",
-			0, ack_time_pro->time[0], ack_pri_low[0]);
-	 else
-		fprintf(fp, "%d: %12.4f\n",
-			0, ack_time_pro->time[0]);
+		if(num_high && num_low){
+    		fprintf(fp, "%d: %12.4f; %16.4f; %26.4f\n", 
+				0, ack_time_pro->time[0], ack_pri_high[0], ack_pri_low[0]);
+		}else if(num_high)
+			fprintf(fp, "%d: %12.4f; %20.4f\n",
+				0, ack_time_pro->time[0], ack_pri_high[0]);
+	 	else if(num_low)
+			fprintf(fp, "%d: %12.4f; %28.4f\n",
+				0, ack_time_pro->time[0], ack_pri_low[0]);
+	 	else
+			fprintf(fp, "%d: %12.4f\n",
+				0, ack_time_pro->time[0]);
+	}
 
 #endif
 
@@ -309,39 +320,49 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	{
 		index = (int)ceil(u[i] * idx) - 1;
 		w[i] = ack_time_pro->time[index];
-		if(num_high){
-			index_high = (int)ceil(u[i] * num_high) - 1;
-			w_high[i] = ack_pri_high[index_high];
-		}
-		if(num_low){
-			index_low = (int)ceil(u[i] * num_low) - 1;
-			w_low[i] = ack_pri_low[index_low];
-		}
-		if( u[i] > 0.999){
-			printf("\n%.4f, %.4f\n", u[i], w[i]);
-			if(num_high && num_low){
-				fprintf(fp, "%.4f: %8.4f; %16.4f; %24.4f\n",
-					u[i], w[i], w_high[i], w_low[i]);
-			}else if(num_high){
-				fprintf(fp, "%.4f: %8.4f; %16.4f\n", u[i],w[i],w_high[i]);
-			}else if(num_low){
-				fprintf(fp, "%.4f: %8.4f; %24.4f\n", u[i],w[i],w_low[i]);
+		if(!conf->enable_http){
+			if(num_high){
+				index_high = (int)ceil(u[i] * num_high) - 1;
+				w_high[i] = ack_pri_high[index_high];
+			}
+			if(num_low){
+				index_low = (int)ceil(u[i] * num_low) - 1;
+				w_low[i] = ack_pri_low[index_low];
+			}
+			if( u[i] > 0.999){
+				printf("\n%.4f, %.4f\n", u[i], w[i]);
+				if(num_high && num_low){
+					fprintf(fp, "%.4f: %8.4f; %16.4f; %24.4f\n",
+						u[i], w[i], w_high[i], w_low[i]);
+				}else if(num_high){
+					fprintf(fp, "%.4f: %8.4f; %16.4f\n", u[i],w[i],w_high[i]);
+				}else if(num_low){
+					fprintf(fp, "%.4f: %8.4f; %24.4f\n", u[i],w[i],w_low[i]);
+				}else{
+					fprintf(fp, "%.4f: %8.4f\n", u[i], w[i]);
+				}
 			}else{
-				fprintf(fp, "%.4f: %8.4f\n", u[i], w[i]);
+				printf("\n%.2f, %.4f\n", u[i], w[i]);	
+				if(num_high && num_low){
+					fprintf(fp, "%.2f: %9.4f; %17.4f; %25.4f\n",
+						u[i], w[i], w_high[i], w_low[i]);
+				}else if(num_high){
+					fprintf(fp, "%.2f: %9.4f; %17.4f\n", u[i],w[i],w_high[i]);
+				}else if(num_low){
+					fprintf(fp, "%.2f: %9.4f; %25.4f\n", u[i],w[i],w_low[i]);
+				}else{
+					fprintf(fp, "%.2f: %9.4f\n", u[i], w[i]);
+				}
 			}
 		}else{
-			printf("\n%.2f, %.4f\n", u[i], w[i]);	
-			if(num_high && num_low){
-				fprintf(fp, "%.2f: %9.4f; %17.4f; %25.4f\n",
-					u[i], w[i], w_high[i], w_low[i]);
-			}else if(num_high){
-				fprintf(fp, "%.2f: %9.4f; %17.4f\n", u[i],w[i],w_high[i]);
-			}else if(num_low){
-				fprintf(fp, "%.2f: %9.4f; %25.4f\n", u[i],w[i],w_low[i]);
+			if( u[i] > 0.999){
+				fprintf(fp, "%.4f: %8.4f\n", u[i], w[i]);
 			}else{
 				fprintf(fp, "%.2f: %9.4f\n", u[i], w[i]);
 			}
+				
 		}
+
 #ifdef OP_MYSQL 
 		if(insert_mysql_hy(w[i],u[i],i))
 		    printf("Error when update row =%d\n",i);
