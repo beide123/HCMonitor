@@ -5,4 +5,6 @@ HCMonitor/tags
 HCMonior/burst.txt
 HCMonitor/response.txt
 HCMoniotr/out
+HCMonitor/*.txt
+HCMonitor/*.pcap
 

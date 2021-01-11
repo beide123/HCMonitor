@@ -130,7 +130,7 @@ int response_time_process(struct node_data *data,uint16_t nb_rx,uint16_t socket_
 /* parse rhe packet and enqueue the meta data */
 struct timespec ts;
 
-int packet_process(struct rte_ipv4_hdr *ip_hdr, struct timespec ts_now, int lcore_id);
+int packet_process(struct rte_ipv4_hdr *ip_hdr, struct timespec ts_now, int lcore_id, uint16_t payload_len);
 int key_extract(struct rte_ipv4_hdr *ip_hdr,struct node_data *data,struct timespec ts_now);
 
 volatile uint32_t burst;

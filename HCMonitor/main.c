@@ -412,11 +412,12 @@ l2fwd_simple_forward(struct rte_mbuf *m, unsigned portid, struct timespec ts_now
 
         tcp = (struct rte_tcp_hdr *)((unsigned char *) ip_hdr + sizeof(struct rte_ipv4_hdr));
 		uint16_t total_len = rte_be_to_cpu_16(ip_hdr->total_length);
-	    if (likely((uint8_t)ip_hdr->next_proto_id == 6 && 
-			total_len > sizeof(struct rte_ipv4_hdr) + ((tcp->data_off & 0xf0) >> 2)))
+		uint16_t payload_len = total_len - sizeof(struct rte_ipv4_hdr)
+ 										 - ((tcp->data_off & 0xf0) >> 2);
+	    if (likely((uint8_t)ip_hdr->next_proto_id == 6 && payload_len > 0))
 	    {
 			port_statistics[portid].tcp_psh++;
-    		if(!(packet_process(ip_hdr, ts_now, lcore_id)))
+    		if(!(packet_process(ip_hdr, ts_now, lcore_id, payload_len)))
 				err++;
     			//printf("packet process failed!\n");
 		}

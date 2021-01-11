@@ -41,8 +41,8 @@
 
 /* For packet metadata enqueue */
 #define CAT_BUFF 20000000
-#define PH_BUFF 20000000
-#define PL_BUFF 1000000
+#define PH_BUFF 10000000
+#define PL_BUFF 10000000
 unsigned long thre = 0;
 unsigned long max_size = QUESIZE;
 unsigned long ph_size  = PH_BUFF;
@@ -236,8 +236,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	float w_high[20],w_low[20];
 	unsigned int index_high,index_low,num_low = 0,num_high = 0;
 
-    if(!conf->enable_http){
-
+    if(conf->enable_pri){
     	if(idx_pri_high > ph_size){
         	ack_pri_high = (float*)realloc(ack_pri_high, sizeof(float) * (idx_pri_high + 1));
         	ph_size = idx_pri_high + 1;
@@ -255,7 +254,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
             	ack_pri_low[num_low++] = ack_time_pro->time[i];
 			}
     	}
-
+		
 		if(num_high){
 			qsort(ack_pri_high,num_high,sizeof(float), compInc);
 			avg_delay_high = avg(ack_pri_high,num_high);
@@ -264,6 +263,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
     		qsort(ack_pri_low,num_low,sizeof(float), compInc);
 			avg_delay_low = avg(ack_pri_low,num_low);
 		}
+
    	}
 	avg_delay = avg(ack_time_pro->time, idx);
     qsort(ack_time_pro->time, idx, sizeof(float), compInc);
@@ -286,7 +286,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	
 	fprintf(fp, "connections:%d,retrans:%d,avg_delay:%f\n",
 			conn_active_mid,recount,avg_delay);
-    if(!conf->enable_http){
+    if(conf->enable_pri){
 		fprintf(fp, "recv_pri_high:%d, recv_pri_low:%d.\n"
                 "pri_high_num:%d,low_pri_num:%d\n",
             	idx_pri_high, idx_pri_low, num_high,num_low);
@@ -296,7 +296,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	}
 	recount = 0;
 	
-	if(!conf->enable_http){
+	if(conf->enable_pri){
 
 		if(num_high && num_low){
     		fprintf(fp, "%d: %12.4f; %16.4f; %26.4f\n", 
@@ -320,7 +320,7 @@ void cdf_acktime(struct atime *ack_time_pro,unsigned int idx)
 	{
 		index = (int)ceil(u[i] * idx) - 1;
 		w[i] = ack_time_pro->time[index];
-		if(!conf->enable_http){
+		if(conf->enable_pri){
 			if(num_high){
 				index_high = (int)ceil(u[i] * num_high) - 1;
 				w_high[i] = ack_pri_high[index_high];
@@ -423,7 +423,7 @@ void lcore_online(void)
 		if(lock_flag && idx_hy){
 			//printf("idx_hy:%ld\n",idx_hy);
 			memcpy(ack_time_hy->time,ack_time->time,sizeof(float) * idx_hy);
-			memcpy(ack_time_hy->pri,ack_time->pri,sizeof(int) * idx_hy);
+			memcpy(ack_time_hy->pri,ack_time->pri,sizeof(float) * idx_hy);
 			idx = idx_hy;
 			idx_hy = 0;
 			cdf_acktime(ack_time_hy,idx);
@@ -663,14 +663,14 @@ int key_extract(struct rte_ipv4_hdr *ip_hdr,struct node_data *data,struct timesp
     }
 }
 
-int packet_process(struct rte_ipv4_hdr *ip_hdr, struct timespec ts_now, int lcore_id)
-{	
+int packet_process(struct rte_ipv4_hdr *ip_hdr, struct timespec ts_now, int lcore_id, uint16_t payload_len)
+{
     int la_key;
 	if(likely((PrQue[lcore_id]->occupy + 1) % max_size != PrQue[lcore_id]->deque)){
         QType *q = PrQue[lcore_id]->RxQue + PrQue[lcore_id]->occupy;
         if(conf->enable_http){
            if(conf->enable_https){
-               la_key = https_parse(ip_hdr, q, ts_now);
+               la_key = https_parse(ip_hdr, q, ts_now, payload_len);
            }else
                la_key = http_parse(ip_hdr, q, ts_now);
         }else

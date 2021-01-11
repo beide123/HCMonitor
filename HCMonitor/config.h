@@ -33,7 +33,8 @@ struct mconfig
     int  enable_https;   //test https traffic
     int  enable_hy;      //IOT traffic server platform. 1:Hy,else x86
 
-    int  server_port;    //used for judge https packet direction
+    int  server_port;    //server node port, used for judge https packet direction
+    int  pkt_len;        //payload length, used for judge https packet priority
 
     /*parse request/response packet in IOT network*/
     int req_label[MAXLABEL];  //labels for request judge

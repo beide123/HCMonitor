@@ -17,7 +17,7 @@ int init_mysql(void) {
      char g_host_name[24],g_user_name[24],g_password[24],g_db_name[24];
 	 
      /*get the db config from txt*/
-     fp_sql = fopen("config_db.txt","r");
+     fp_sql = fopen("config_db","r");
      
      fscanf(fp_sql,"%s%s%s%s",g_host_name,g_user_name,g_password,g_db_name);
      

@@ -13,6 +13,7 @@ struct mconfig* initConfig()
   conf->pri_offset     = 5;
   conf->pri_high_label = 1;
   conf->server_port    = 80;
+  conf->enable_pri     = 1;
   return conf;
 }
 
@@ -52,6 +53,7 @@ int getConfig(struct mconfig *conf)
     config_lookup_int(&cfg, "PriLabelHigh", &(conf->pri_high_label));
     config_lookup_int(&cfg, "PriLabelLow", &(conf->pri_low_label));
     config_lookup_int(&cfg, "server_port", &(conf->server_port));
+    config_lookup_int(&cfg, "payload_len", &(conf->pkt_len));
 
     printf("Enable HTTP: %d\n", conf->enable_http);
     config_destroy(&cfg);
